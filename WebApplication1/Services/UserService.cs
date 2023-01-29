@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BCrypt.Net;
 using WebApplication1.Helpers;
+using WebApplication1.Exceptions;
 using WebApplication1.Models.User;
 
 public interface IUserService
@@ -8,7 +9,7 @@ public interface IUserService
     IEnumerable<User> GetAll();
     User GetById(int id);
     void Create(CreateUser model);
-    void Update(int id, UpdateRequest model);
+    void Update(int id, UpdateUser model);
     void Delete(int id);
 }
 
