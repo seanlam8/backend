@@ -1,9 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "hfZSrsZv5/81JnEvfw/MY/U9HI4dkC2zzGZotak4Q7OzW4e/7hynpI9owwlnddJZJuOGMuiidfwAqlPtGA7nSQ==",
+  "dgSpecHash": "CyHGhosfSl9l1Fruoq3Tl9fZULeP0hmamdqFOWjvotRVSH+V3jmv354mmHnbWNzBugYfSIBvX7kTMajzYWfQZQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Sean\\Desktop\\code\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Sean\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\Sean\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
+    "C:\\Users\\Sean\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
+    "C:\\Users\\Sean\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Sean\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.1\\microsoft.entityframeworkcore.7.0.1.nupkg.sha512",
     "C:\\Users\\Sean\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.1\\microsoft.entityframeworkcore.abstractions.7.0.1.nupkg.sha512",
     "C:\\Users\\Sean\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.1\\microsoft.entityframeworkcore.analyzers.7.0.1.nupkg.sha512",

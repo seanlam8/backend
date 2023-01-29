@@ -1,13 +1,12 @@
 using System.Text.Json.Serialization;
 
-namespace WebApplication1.Models;
+namespace WebApplication1.Models.User;
 
 public class User
 {
     public int Id { get; set; }
-    public string UserName { get; set; }
     public string Password { get; set; }
-    public string Email { get; set; } = string.Empty;
+    public string Email { get; set; } 
 
     [JsonIgnore]
     public string PasswordHash { get; set; }
