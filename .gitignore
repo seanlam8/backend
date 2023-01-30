@@ -38,8 +38,8 @@ typings
 .node_repl_history
 
 # .NET compiled files
-bin
-obj
+.WebApplication1/bin/*
+.WebApplication1/obj/*
 
 # local sqlite db that is auto generated
 LocalDatabase.db
