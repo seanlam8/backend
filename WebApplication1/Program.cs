@@ -1,8 +1,28 @@
+using System.Text.Json.Serialization;
+using WebApplication1.Helpers;
+using WebApplication1.Services;
+using WebApplication1.Middleware;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+{
+    var services = builder.Services;
+    var env = builder.Environment;
 
-builder.Services.AddControllers();
+    services.AddDbContext<DataContext>();
+    services.AddCors();
+    services.AddControllers().AddJsonOptions(x =>
+    {
+        // ignore omitted parameters on models to enable optional params (e.g. User update)
+        x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+    });
+    services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+    // configure DI for application services
+    services.AddScoped<IUserService, UserService>();
+}
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -16,10 +36,22 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// configure HTTP request pipeline
+{
+    // global cors policy
+    app.UseCors(x => x
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
 
-app.UseAuthorization();
+    // global error handler
+    app.UseMiddleware<ErrorHandlerMiddleware>();
 
-app.MapControllers();
+    app.UseHttpsRedirection();
+
+    app.UseAuthorization();
+
+    app.MapControllers();
+}
 
 app.Run();

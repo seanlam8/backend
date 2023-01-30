@@ -1,84 +1,57 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿namespace WebApplication1.Controllers;
 
-namespace WebApplication1.Controllers;
+using AutoMapper;
+using WebApplication1.Services;
+using WebApplication1.Models.User;
+using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
-    // GET: HomeController
-    public ActionResult Index()
+    private IUserService _userService;
+    private IMapper _mapper;
+
+    public UserController(
+        IUserService userService,
+        IMapper mapper)
     {
-        return View();
+        _userService = userService;
+        _mapper = mapper;
     }
 
-    // GET: HomeController/Details/5
-    public ActionResult Details(int id)
+    [HttpGet]
+    public IActionResult GetAll()
     {
-        return View();
+        var users = _userService.GetAll();
+        return Ok(users);
     }
 
-    // GET: HomeController/Create
-    public ActionResult Create()
+    [HttpGet("{id}")]
+    public IActionResult GetById(int id)
     {
-        return View();
+        var user = _userService.GetById(id);
+        return Ok(user);
     }
 
-    // POST: HomeController/Create
     [HttpPost]
-    [ValidateAntiForgeryToken]
-    public ActionResult Create(IFormCollection collection)
+    public IActionResult Create(CreateUser model)
     {
-        try
-        {
-            return RedirectToAction(nameof(Index));
-        }
-        catch
-        {
-            return View();
-        }
+        _userService.Create(model);
+        return Ok(new { message = "User created" });
     }
 
-    // GET: HomeController/Edit/5
-    public ActionResult Edit(int id)
+    [HttpPut("{id}")]
+    public IActionResult Update(int id, UpdateUser model)
     {
-        return View();
+        _userService.Update(id, model);
+        return Ok(new { message = "User updated" });
     }
 
-    // POST: HomeController/Edit/5
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id, IFormCollection collection)
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
     {
-        try
-        {
-            return RedirectToAction(nameof(Index));
-        }
-        catch
-        {
-            return View();
-        }
-    }
-
-    // GET: HomeController/Delete/5
-    public ActionResult Delete(int id)
-    {
-        return View();
-    }
-
-    // POST: HomeController/Delete/5
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public ActionResult Delete(int id, IFormCollection collection)
-    {
-        try
-        {
-            return RedirectToAction(nameof(Index));
-        }
-        catch
-        {
-            return View();
-        }
+        _userService.Delete(id);
+        return Ok(new { message = "User deleted" });
     }
 }

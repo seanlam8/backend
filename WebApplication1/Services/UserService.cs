@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿namespace WebApplication1.Services;
+
+using AutoMapper;
 using BCrypt.Net;
 using WebApplication1.Helpers;
 using WebApplication1.Exceptions;
@@ -46,7 +48,7 @@ public class UserService : IUserService
         var user = _mapper.Map<User>(model);
 
         // hash password
-        user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.Password);
+        user.PasswordHash = BCrypt.HashPassword(user.Password);
 
         // save user
         _context.Users.Add(user);
@@ -63,7 +65,7 @@ public class UserService : IUserService
 
         // hash password if it was entered
         if (!string.IsNullOrEmpty(model.Password))
-            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.Password);
+            user.PasswordHash = BCrypt.HashPassword(user.Password);
 
         // copy model to user and save
         _mapper.Map(model, user);
